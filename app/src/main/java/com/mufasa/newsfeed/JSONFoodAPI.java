@@ -7,6 +7,8 @@ import retrofit2.http.GET;
 
 public interface JSONFoodAPI {
 
-    @GET("complexSearch?apiKey=32bbbbc8bc864f8e8eb4d9c59dc51b69&query=pasta")
+    @GET("c81dab0e3242dc7ac0a5")
     Call<List<Result>> getRequests();
 }
+
+//  32bbbbc8bc864f8e8eb4d9c59dc51b69

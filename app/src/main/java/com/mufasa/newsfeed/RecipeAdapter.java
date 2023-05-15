@@ -1,9 +1,6 @@
 package com.mufasa.newsfeed;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +29,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.TitleHolde
     public void onBindViewHolder(@NonNull TitleHolder holder, int position) {
         Result currentRecipe = recipeList.get(position);
         holder.textViewTitle.setText(currentRecipe.getTitle());
-        holder.imageViewRecipe.setImageBitmap(getBitmapFromURL(currentRecipe.getImage()));
+        Picasso.get().load(currentRecipe.getImage()).into(holder.imageViewRecipe);
+        holder.textViewDescription.setText(currentRecipe.getDescription());
     }
 
     @Override
@@ -49,34 +44,18 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.TitleHolde
         notifyDataSetChanged();
     }
 
-    class TitleHolder extends RecyclerView.ViewHolder {
+    static class TitleHolder extends RecyclerView.ViewHolder {
 
-        private TextView textViewTitle;
-        private ImageView imageViewRecipe;
+        private final TextView textViewTitle;
+        private final ImageView imageViewRecipe;
+        private final TextView textViewDescription;
 
 
         public TitleHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.tvTitle);
             imageViewRecipe = itemView.findViewById(R.id.ivRecipeImg);
-        }
-    }
-
-    public static Bitmap getBitmapFromURL(String src) {
-        try {
-            Log.e("src",src);
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            Log.e("Bitmap","returned");
-            return myBitmap;
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("Exception",e.getMessage());
-            return null;
+            textViewDescription = itemView.findViewById(R.id.tvDescription);
         }
     }
 

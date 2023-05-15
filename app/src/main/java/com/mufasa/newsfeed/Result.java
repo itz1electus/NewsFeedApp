@@ -20,6 +20,9 @@ public class Result {
     @SerializedName("imageType")
     @Expose
     private String imageType;
+    @SerializedName("description")
+    @Expose
+    private String description;
 
     public Integer getId() {
         return id;
@@ -53,4 +56,11 @@ public class Result {
         this.imageType = imageType;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

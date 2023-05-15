@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -17,7 +19,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView textView;
+
+    List<Result> results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +31,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        RecipeAdapter recipeAdapter = new RecipeAdapter();
-        recyclerView.setAdapter(recipeAdapter);
-
-        textView = recyclerView.findViewById(R.id.tvTitle);
-
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.spoonacular.com/recipes/")
+                .baseUrl("https://api.npoint.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -45,13 +43,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Result>> call, Response<List<Result>> response) {
                 if (!response.isSuccessful()) {
-                    textView.setText("Code is: " + response.code());
-                    return;
-                }
-                List<Result> results = response.body();
-
-                for (Result result : results) {
-                    textView.setText(result.getTitle());
+                    System.out.println(response.code());
+                } else {
+                    results = response.body();
+                    RecipeAdapter recipeAdapter = new RecipeAdapter();
+                    recipeAdapter.setRecipeList(results);
+                    recyclerView.setAdapter(recipeAdapter);
                 }
             }
 
@@ -62,4 +59,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    public void onCustomToggleClick(View view) {
+        Toast.makeText(this, "Custom Toggle View", Toast.LENGTH_LONG).show();
+    }
+
 }
