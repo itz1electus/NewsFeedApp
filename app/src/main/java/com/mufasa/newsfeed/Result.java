@@ -23,6 +23,9 @@ public class Result {
     @SerializedName("description")
     @Expose
     private String description;
+    @SerializedName("username")
+    @Expose
+    private String username;
 
     public Integer getId() {
         return id;
@@ -62,5 +65,13 @@ public class Result {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

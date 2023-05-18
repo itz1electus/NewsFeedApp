@@ -4,70 +4,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="4dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginEnd="4dp"
-    android:padding="16dp">
+    android:layout_marginBottom="40dp">
+
+    <LinearLayout
+        android:id="@+id/linearTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="6dp"
+        app:layout_constraintBottom_toTopOf="@id/ivRecipeImg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_profile" />
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Username" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/ivRecipeImg"
-        android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        android:layout_marginBottom="8dp"
+        android:layout_width="410dp"
+        android:layout_height="350dp"
+        android:layout_marginBottom="4dp"
         android:orientation="horizontal"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearTop"
         tools:src="@drawable/food" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:flow_horizontalAlign="start"
-        app:layout_constraintBottom_toTopOf="@id/tvDescription"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivRecipeImg">
 
         <ToggleButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:textOn=""
-            android:textOff=""
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="start"
             android:background="@drawable/toggle_selector"
-            android:layout_gravity="center"
-            android:onClick="onCustomToggleClick"/>
+            android:onClick="onCustomToggleClick"
+            android:textOff=""
+            android:textOn="" />
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+        <ToggleButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="start"
             android:layout_marginStart="8dp"
-            android:padding="8dp"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            tools:text="@string/app_name"
-            android:textColor="@color/black"
-            android:textAlignment="gravity"
-            android:gravity="center_vertical"/>
+            android:background="@drawable/ic_baseline_chat_bubble"
+            android:onClick="onCustomToggleClick"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/ic_outline_arrow_outward"
+            android:onClick="onCustomToggleClick"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_marginStart="275dp"
+            android:background="@drawable/save_selector_xml"
+            android:onClick="onCustomToggleClick"
+            android:textOff=""
+            android:textOn="" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:padding="8dp"
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="2dp"
+        android:gravity="center_vertical"
+        android:padding="4dp"
+        android:textAlignment="gravity"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tvDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        tools:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:padding="4dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:text="Your Text here"/>
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="This is the description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

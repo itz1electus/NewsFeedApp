@@ -1,12 +1,17 @@
 package com.mufasa.newsfeed;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     List<Result> results;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
         Call<List<Result>> apiCall = jsonFoodAPI.getRequests();
 
         apiCall.enqueue(new Callback<List<Result>>() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
-            public void onResponse(Call<List<Result>> call, Response<List<Result>> response) {
+            public void onResponse(@NonNull Call<List<Result>> call, @NonNull Response<List<Result>> response) {
                 if (!response.isSuccessful()) {
                     System.out.println(response.code());
                 } else {

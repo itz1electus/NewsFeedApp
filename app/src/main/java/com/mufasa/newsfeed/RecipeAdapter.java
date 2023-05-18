@@ -31,6 +31,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.TitleHolde
         holder.textViewTitle.setText(currentRecipe.getTitle());
         Picasso.get().load(currentRecipe.getImage()).into(holder.imageViewRecipe);
         holder.textViewDescription.setText(currentRecipe.getDescription());
+        holder.textViewUsername.setText(currentRecipe.getUsername());
     }
 
     @Override
@@ -49,6 +50,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.TitleHolde
         private final TextView textViewTitle;
         private final ImageView imageViewRecipe;
         private final TextView textViewDescription;
+        private final TextView textViewUsername;
 
 
         public TitleHolder(@NonNull View itemView) {
@@ -56,6 +58,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.TitleHolde
             textViewTitle = itemView.findViewById(R.id.tvTitle);
             imageViewRecipe = itemView.findViewById(R.id.ivRecipeImg);
             textViewDescription = itemView.findViewById(R.id.tvDescription);
+            textViewUsername = itemView.findViewById(R.id.tvUsername);
         }
     }
 
