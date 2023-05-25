@@ -2,20 +2,14 @@ package com.mufasa.newsfeed;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -26,7 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ResultViewModel resultViewModel;
     List<Result> results;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -38,6 +32,17 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.rvNews);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
+
+        RecipeAdapter recipeAdapter = new RecipeAdapter();
+        recyclerView.setAdapter(recipeAdapter);
+
+        resultViewModel = ViewModelProviders.of(this).get(ResultViewModel.class);
+        resultViewModel.getAllResults().observe(this, new Observer<List<Result>>() {
+            @Override
+            public void onChanged(List<Result> resultList) {
+                recipeAdapter.setRecipeList(resultList);
+            }
+        });
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.npoint.io/")

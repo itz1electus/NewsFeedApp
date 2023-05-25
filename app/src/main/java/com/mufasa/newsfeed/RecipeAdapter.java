@@ -1,12 +1,7 @@
 package com.mufasa.newsfeed;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -32,7 +27,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.TitleHolde
         return new TitleHolder(itemView);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onBindViewHolder(@NonNull TitleHolder holder, int position) {
         Result currentRecipe = recipeList.get(position);
@@ -40,7 +34,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.TitleHolde
         Picasso.get().load(currentRecipe.getImage()).into(holder.imageViewRecipe);
         holder.textViewDescription.setText(currentRecipe.getDescription());
         holder.textViewUsername.setText(currentRecipe.getUsername());
-        holder.id = currentRecipe.getId();
         holder.imageViewRecipe.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -69,7 +62,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.TitleHolde
         return recipeList.size();
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     public void setRecipeList(List<Result> recipeList) {
         this.recipeList = recipeList;
         notifyDataSetChanged();
@@ -81,11 +73,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.TitleHolde
         private final ImageView imageViewRecipe;
         private final TextView textViewDescription;
         private final TextView textViewUsername;
-        private int id;
         private final ToggleButton toggleButtonLike;
         private final TextView textViewButton;
 
-        @SuppressLint("ClickableViewAccessibility")
         public TitleHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.tvTitle);

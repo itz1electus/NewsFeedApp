@@ -1,15 +1,17 @@
 package com.mufasa.newsfeed;
 
-import android.app.Application;
-import android.net.Uri;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "result_table")
 public class Result {
 
     @SerializedName("id")
     @Expose
+    @PrimaryKey(autoGenerate = false)
     private Integer id;
     @SerializedName("title")
     @Expose
@@ -27,7 +29,7 @@ public class Result {
     @Expose
     private String username;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -73,5 +75,12 @@ public class Result {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Result(String title, String description, String username, String image) {
+        this.title = title;
+        this.description = description;
+        this.username = username;
+        this.image = image;
     }
 }
