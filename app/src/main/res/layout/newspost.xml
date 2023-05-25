@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="40dp">
+    android:layout_marginBottom="40dp"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/linearTop"
@@ -15,13 +16,15 @@
         app:layout_constraintBottom_toTopOf="@id/ivRecipeImg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="4dp"
-            android:background="@drawable/ic_profile" />
+            android:background="@drawable/ic_profile"
+            android:contentDescription="@string/profile_picture" />
 
         <TextView
             android:id="@+id/tvUsername"
@@ -47,7 +50,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearTop"
-        tools:src="@drawable/food" />
+        tools:src="@drawable/food"
+        android:contentDescription="@string/api_pic" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -60,11 +64,11 @@
         app:layout_constraintTop_toBottomOf="@+id/ivRecipeImg">
 
         <ToggleButton
+            android:id="@+id/tbLike"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="start"
             android:background="@drawable/toggle_selector"
-            android:onClick="onCustomToggleClick"
             android:textOff=""
             android:textOn="" />
 
@@ -74,7 +78,6 @@
             android:layout_gravity="start"
             android:layout_marginStart="8dp"
             android:background="@drawable/ic_baseline_chat_bubble"
-            android:onClick="onCustomToggleClick"
             android:textOff=""
             android:textOn="" />
 
@@ -84,7 +87,6 @@
             android:layout_gravity="start"
             android:layout_marginStart="8dp"
             android:background="@drawable/ic_outline_arrow_outward"
-            android:onClick="onCustomToggleClick"
             android:textOff=""
             android:textOn="" />
 
@@ -94,7 +96,6 @@
             android:layout_gravity="end"
             android:layout_marginStart="275dp"
             android:background="@drawable/save_selector_xml"
-            android:onClick="onCustomToggleClick"
             android:textOff=""
             android:textOn="" />
     </LinearLayout>
@@ -128,6 +129,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        tools:text="This is the description" />
+        tools:text="This is description which is also the script which is also a lot. This is description which is also the script which is also a lot. This is description which is also the script which is also a lot."
+        android:ellipsize="marquee"
+        android:singleLine="true"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/more"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textAlignment="viewEnd"
+        android:layout_marginEnd="8dp"/>
+
+</LinearLayout>

@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,8 +28,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     List<Result> results;
-    private ImageView imageView;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,15 +62,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Result>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Result>> call, @NonNull Throwable t) {
                 Log.e("error", "Error is: " + t.getMessage());
             }
         });
 
-    }
-
-    public void onCustomToggleClick(View view) {
-        Toast.makeText(this, "Custom Toggle View", Toast.LENGTH_LONG).show();
     }
 
 }
