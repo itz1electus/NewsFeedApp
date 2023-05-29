@@ -9,7 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = Result.class, version = 2)
+@Database(entities = Result.class, version = 1)
 public abstract class ResultDatabase extends RoomDatabase {
 
     private static ResultDatabase instance;
@@ -42,8 +42,8 @@ public abstract class ResultDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            resultDao.insert(new Result("Bruh", "bruh", "bruh", "dont"));
-            resultDao.insert(new Result("aefkjfekj", "jsefbfjsbkjsbfk", "sfkjebfkjs", "sjefb"));
+            resultDao.insert(new Result("First Title", "First Description", "First Username"));
+            resultDao.insert(new Result("Second Title", "Second Description", "Second Username"));
             return null;
         }
     }

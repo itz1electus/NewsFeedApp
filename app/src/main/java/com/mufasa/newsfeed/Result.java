@@ -77,10 +77,9 @@ public class Result {
         this.username = username;
     }
 
-    public Result(String title, String description, String username, String image) {
+    public Result(String title, String description, String username) {
         this.title = title;
         this.description = description;
         this.username = username;
-        this.image = image;
     }
 }

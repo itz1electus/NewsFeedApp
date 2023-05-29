@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -20,10 +21,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private ResultViewModel resultViewModel;
-    List<Result> results;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
         RecipeAdapter recipeAdapter = new RecipeAdapter();
         recyclerView.setAdapter(recipeAdapter);
 
-        resultViewModel = ViewModelProviders.of(this).get(ResultViewModel.class);
+        ResultViewModel resultViewModel = ViewModelProviders.of(this).get(ResultViewModel.class);
         resultViewModel.getAllResults().observe(this, new Observer<List<Result>>() {
             @Override
-            public void onChanged(List<Result> resultList) {
-                recipeAdapter.setRecipeList(resultList);
+            public void onChanged(List<Result> results) {
+                recipeAdapter.setRecipeList(results);
+//                Toast.makeText(MainActivity.this, "PLEASE HELP", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -59,10 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     System.out.println(response.code());
                 } else {
+                    List<Result> results;
                     results = response.body();
                     RecipeAdapter recipeAdapter = new RecipeAdapter();
                     recipeAdapter.setRecipeList(results);
                     recyclerView.setAdapter(recipeAdapter);
+
                 }
             }
 

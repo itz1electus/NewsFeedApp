@@ -24,6 +24,6 @@ public interface ResultDao {
     @Query("DELETE FROM result_table")
     void deleteAllResults();
 
-    @Query("SELECT * FROM result_table ORDER BY id ASC")
+    @Query("SELECT * FROM result_table")
     LiveData<List<Result>> getAllResults();
 }
