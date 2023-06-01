@@ -10,11 +10,13 @@ import java.util.List;
 public class ResultRepository {
     private ResultDao resultDao;
     private LiveData<List<Result>> allResults;
+    private LiveData<List<Integer>> allIds;
 
     public ResultRepository(Application application) {
         ResultDatabase resultDatabase = ResultDatabase.getInstance(application);
         resultDao = resultDatabase.resultDao();
         allResults = resultDao.getAllResults();
+        allIds = resultDao.getAllId();
     }
 
     public void insert(Result result) {
@@ -35,6 +37,10 @@ public class ResultRepository {
 
     public LiveData<List<Result>> getAllResults() {
         return allResults;
+    }
+
+    public LiveData<List<Integer>> getAllIds() {
+        return allIds;
     }
 
     public static class InsertResultAsyncTask extends AsyncTask<Result, Void, Void> {

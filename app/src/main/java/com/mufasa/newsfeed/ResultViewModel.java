@@ -11,11 +11,13 @@ import java.util.List;
 public class ResultViewModel extends AndroidViewModel {
     private ResultRepository resultRepository;
     private LiveData<List<Result>> allResults;
+    private LiveData<List<Integer>> allIds;
 
     public ResultViewModel(@NonNull Application application) {
         super(application);
         resultRepository = new ResultRepository(application);
         allResults = resultRepository.getAllResults();
+        allIds = resultRepository.getAllIds();
     }
 
     public void insert(Result result) {
@@ -36,5 +38,9 @@ public class ResultViewModel extends AndroidViewModel {
 
     public LiveData<List<Result>> getAllResults() {
         return allResults;
+    }
+
+    public LiveData<List<Integer>> getAllIds() {
+        return allIds;
     }
 }
